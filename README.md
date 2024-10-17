@@ -7,6 +7,7 @@ winget install --id Git.Git -e --source winget
 
 # setup
 npm init
+npm install express - node_modules and package-lock.json file created
 
 
 
