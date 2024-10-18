@@ -1,0 +1,7 @@
+1. Create Repository
+2. Initialize the Repository - git init
+3. Install express, nodemon and update scripts in package.json
+4. Create a server
+5. Listen to port 3000
+6. Make request Handler
+

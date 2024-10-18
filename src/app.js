@@ -6,4 +6,9 @@ app.use((req, res) => {
  res.send("Hello from server");
 })
 
+// put in end : order matter in routes and extension
+app.use("/", (req, res) => {
+    res.send("Welcome");
+})
+
 app.listen(3000, () => console.log("Server started on port 3000....")); // listening our web server on 3000 port
