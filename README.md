@@ -6,6 +6,7 @@ Build from scratch
 - winget install --id Git.Git -e --source winget
 - https://www.postman.com/downloads/
 - https://www.mongodb.com/try/download/community
+- https://www.mongodb.com/try/download/shell (set path and check in cmd)
 
 # setup
 - npm init
