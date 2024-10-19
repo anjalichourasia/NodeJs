@@ -10,9 +10,13 @@ const userDetail = {
         type: String,
         required: true,
         maxLength: 20,
-    },
+    }
 }
-const userDetailSchema = new mongoose.Schema(userDetail);
+const userDetailSchema = new mongoose.Schema(
+    userDetail,
+    {
+        timestamps: true,
+});
 
 const UserDetailModel = mongoose.model("userDetail", userDetailSchema);
 
