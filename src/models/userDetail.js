@@ -9,7 +9,6 @@ const userDetail = {
     password: {
         type: String,
         required: true,
-        maxLength: 20,
     }
 }
 const userDetailSchema = new mongoose.Schema(

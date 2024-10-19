@@ -15,7 +15,7 @@ Build from scratch
 - create database with name toDo
 - import postman setup
 - Hit Me First to add some Data API to be called first
-- install validator to validate
+- install validator to validate and Bcrypt to encrypt password
 
 # run
 - nodemon src/app.js

@@ -1,9 +1,15 @@
 const express = require("express");
+const bcrypt = require("bcrypt");
+
 const app = express(); //creating new express js application
+
 const connectDB = require("./config/database")
+
 const Todo = require("./models/toDo");
 const UserDetail = require("./models/userDetail");
+
 const { validateSignUpData } = require("./utils/validation")
+
 const { authentication } = require("./middleware/auth")
 const { err } = require("./middleware/err");
 
@@ -104,10 +110,16 @@ app.post("/signUpEasy", async (req, res) => {
 
 app.post("/signIn", async (req, res) => { 
     try {  
-        validateSignUpData(req)  
+        validateSignUpData(req)  ;
+        const { name, password } = req.body;
+        const passwordHash = await bcrypt.hash(password, 10);
+        console.log(passwordHash)
         // Validation of data
-        const userDetailObj = req.body;
-        const userDetail = new UserDetail(userDetailObj); // created new instance of ToDo model
+        // const userDetailObj = req.body;
+        const userDetail = new UserDetail({
+            name,
+            password: passwordHash
+        }); // created new instance of ToDo model
         await userDetail.save()
         res.send("User signUp SuccessFully")
     } catch (err) {
