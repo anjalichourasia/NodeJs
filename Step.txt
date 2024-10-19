@@ -7,4 +7,8 @@
 7. Install postman
 8. Added middleware authentication dummy and error Handler to test it
 9. Installed Mongoose
+10. Connect your application to Database /toDo
+11. Call the ConnectDB function and Connect to Database before starting the application on 3000
+12. Define Schema and TODO model
+13. 
 
