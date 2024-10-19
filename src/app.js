@@ -11,6 +11,7 @@ const { err } = require("./middleware/err");
 
 app.use(express.json()); 
 
+// 1. CREATE
 app.post("/create", async (req, res) => {
     const toDoObj = req.body;
     try {    
@@ -22,6 +23,7 @@ app.post("/create", async (req, res) => {
     }
 });
 
+// 2. READ
 // get user from database
 app.get("/feed", async (req,res) => {
     const userName = req.body.user;
@@ -37,6 +39,28 @@ app.get("/feed", async (req,res) => {
         res.status(400).send("Get api not working....");
     }
 })
+
+// 3. UPDATE
+// Put or patch can be used to update depend if u want to update whole or some part
+
+app.patch("/update", async (req, res) => {
+    const newData = req.body;
+    const toDoId = req.body.toDoId;
+    console.log("newData", newData);
+    console.log("toDoId", toDoId);
+    try {    
+        const toDoList = await Todo.findByIdAndUpdate({ _id: toDoId}, newData, { runValidators: true});
+        if(!toDoList) {
+            res.status(404).send("User not found");
+        } else {
+            res.send("User updated SuccessFully")
+        }
+    } catch (err) {
+        res.status(400).send("Error saving the user:" + err.message);
+    }
+});
+
+// 4. DELETE
 
 app.delete("/user", async (req, res) => {
     const toDoId = req.body.toDoId;
@@ -74,20 +98,14 @@ app.post("/signUpEasy", async (req, res) => {
     }
 });
 
-// Put or patch can be used to update depend if u want to update whole or some part
+// SIGN IN
 
-app.patch("/update", async (req, res) => {
-    const newData = req.body;
-    const toDoId = req.body.toDoId;
-    console.log("newData", newData);
-    console.log("toDoId", toDoId);
+app.post("/signUp", async (req, res) => {
+    const toDoObj = req.body;
     try {    
-        const toDoList = await Todo.findByIdAndUpdate({ _id: toDoId}, newData, { runValidators: true});
-        if(!toDoList) {
-            res.status(404).send("User not found");
-        } else {
-            res.send("User updated SuccessFully")
-        }
+        const toDo = new Todo(toDoObj); // created new instance of ToDo model
+        await toDo.save()
+        res.send("User added SuccessFully")
     } catch (err) {
         res.status(400).send("Error saving the user:" + err.message);
     }
