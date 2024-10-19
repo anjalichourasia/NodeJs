@@ -11,6 +11,8 @@
 11. Call the ConnectDB function and Connect to Database before starting the application on 3000
 12. Define Schema and TODO model
 13. Created POST /signUp api to add data to Database and push some documents  using API calls from postman
+14. Added middleware to read JSON obj from postman body. (finally coverted to js object)
+
 
 
 

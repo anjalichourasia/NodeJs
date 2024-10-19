@@ -7,7 +7,23 @@ const { err } = require("./middleware/err");
 
 //handing incoming request : Request Handler
 
+//added middleware to read JSON from postman
+
+app.use(express.json()); 
+
 app.post("/signUp", async (req, res) => {
+    const toDoObj = req.body;
+    try {    
+        const toDo = new Todo(toDoObj); // created new instance of ToDo model
+        await toDo.save()
+        res.send("User added SuccessFully")
+    } catch (err) {
+        res.status(400).send("Error saving the user:" + err.message);
+    }
+});
+
+app.post("/signUp", async (req, res) => {
+    
     const toDoObj = {
         title: "My second Todo",
         description: "Trial 2",
