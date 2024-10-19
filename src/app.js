@@ -111,13 +111,13 @@ app.post("/signUpEasy", async (req, res) => {
 app.post("/signIn", async (req, res) => { 
     try {  
         validateSignUpData(req)  ;
-        const { name, password } = req.body;
+        const { email, password } = req.body;
         const passwordHash = await bcrypt.hash(password, 10);
         console.log(passwordHash)
         // Validation of data
         // const userDetailObj = req.body;
         const userDetail = new UserDetail({
-            name,
+            email,
             password: passwordHash
         }); // created new instance of ToDo model
         await userDetail.save()
@@ -131,9 +131,9 @@ app.post("/signIn", async (req, res) => {
 
 app.post("/login", async (req, res) => { 
     try {  
-        const { name, password } = req.body;
-        const user = await UserDetail.findOne({name: name});
-        if(!user){
+        const { email, password } = req.body;
+        const user = await UserDetail.findOne({email: email});
+        if(!email){
             res.status(404).send("User not found");
         }
         const isPasswordValid = await bcrypt.compare(password, user.password);
