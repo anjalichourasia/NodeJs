@@ -127,6 +127,25 @@ app.post("/signIn", async (req, res) => {
     }
 });
 
+// LOGIN
+
+app.post("/login", async (req, res) => { 
+    try {  
+        const { name, password } = req.body;
+        const user = await UserDetail.findOne({name: name});
+        if(!user){
+            res.status(404).send("User not found");
+        }
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if(!isPasswordValid){
+            res.status(404).send("User not found");
+        }
+        res.send("User signUp SuccessFully")
+    } catch (err) {
+        res.status(400).send("Error saving the user:" + err.message);
+    }
+});
+
 connectDB()
     .then(() => {
         console.log("Database is connected....");
