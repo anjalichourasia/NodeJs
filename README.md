@@ -15,6 +15,7 @@ Build from scratch
 - create database with name toDo
 - import postman setup
 - Hit Me First to add some Data API to be called first
+- install validator to validate
 
 # run
 - nodemon src/app.js

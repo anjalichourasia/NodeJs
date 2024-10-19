@@ -3,6 +3,7 @@ const app = express(); //creating new express js application
 const connectDB = require("./config/database")
 const Todo = require("./models/toDo");
 const UserDetail = require("./models/userDetail");
+const { validateSignUpData } = require("./utils/validation")
 const { authentication } = require("./middleware/auth")
 const { err } = require("./middleware/err");
 
@@ -101,9 +102,11 @@ app.post("/signUpEasy", async (req, res) => {
 
 // SIGN IN
 
-app.post("/signIn", async (req, res) => {
-    const userDetailObj = req.body;
-    try {    
+app.post("/signIn", async (req, res) => { 
+    try {  
+        validateSignUpData(req)  
+        // Validation of data
+        const userDetailObj = req.body;
         const userDetail = new UserDetail(userDetailObj); // created new instance of ToDo model
         await userDetail.save()
         res.send("User signUp SuccessFully")
