@@ -12,6 +12,11 @@ const ToDOList = {
     dueDate: {
         type: Date,
         required: true,
+        validate(value) {
+            if(value < Date.now()){
+                throw new Error("Date is already expired");
+            }
+        },
     },
     completed: {
         type: Boolean,
