@@ -22,8 +22,7 @@ app.post("/signUp", async (req, res) => {
     }
 });
 
-app.post("/signUp", async (req, res) => {
-    
+app.post("/signUpEasy", async (req, res) => {  
     const toDoObj = {
         title: "My second Todo",
         description: "Trial 2",
