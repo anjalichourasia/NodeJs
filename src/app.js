@@ -11,7 +11,7 @@ const { err } = require("./middleware/err");
 
 app.use(express.json()); 
 
-app.post("/signUp", async (req, res) => {
+app.post("/create", async (req, res) => {
     const toDoObj = req.body;
     try {    
         const toDo = new Todo(toDoObj); // created new instance of ToDo model

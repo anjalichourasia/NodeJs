@@ -13,6 +13,8 @@ Build from scratch
 - npm install express : node_modules and package-lock.json file created
 - npm i -g nodemon : install in global level, automatically update in server level
 - create database with name toDo
+- import postman setup
+- Hit Me First to add some Data API to be called first
 
 # run
 - nodemon src/app.js

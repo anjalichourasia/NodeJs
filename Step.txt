@@ -14,7 +14,9 @@
 14. Added express.json() middleware to read JSON obj from postman body. (finally coverted to js object)
 15. Make user signUp API Dynamic to receive data from end user.
 16. GET api to get all toDo list from the db
-17. 
+17. PATCH api to update complete status from the db using Id
+TODO Data sanitization need to add
+18. 
 
 
 
