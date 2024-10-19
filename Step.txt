@@ -4,4 +4,5 @@
 4. Create a server
 5. Listen to port 3000
 6. Make request Handler
+7. Install postman
 
