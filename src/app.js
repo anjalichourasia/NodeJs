@@ -2,6 +2,7 @@ const express = require("express");
 const app = express(); //creating new express js application
 const connectDB = require("./config/database")
 const Todo = require("./models/toDo");
+const UserDetail = require("./models/userDetail");
 const { authentication } = require("./middleware/auth")
 const { err } = require("./middleware/err");
 
@@ -100,12 +101,12 @@ app.post("/signUpEasy", async (req, res) => {
 
 // SIGN IN
 
-app.post("/signUp", async (req, res) => {
-    const toDoObj = req.body;
+app.post("/signIn", async (req, res) => {
+    const userDetailObj = req.body;
     try {    
-        const toDo = new Todo(toDoObj); // created new instance of ToDo model
-        await toDo.save()
-        res.send("User added SuccessFully")
+        const userDetail = new UserDetail(userDetailObj); // created new instance of ToDo model
+        await userDetail.save()
+        res.send("User signUp SuccessFully")
     } catch (err) {
         res.status(400).send("Error saving the user:" + err.message);
     }
