@@ -22,6 +22,19 @@ app.post("/signUp", async (req, res) => {
     }
 });
 
+// get user from database
+app.get("/feed", async (req,res) => {
+    const userName = req.body.user;
+    console.log(userName)
+    try {
+    const toDoList = await Todo.find({user: userName});
+    res.send(toDoList);
+    } catch (err) {
+        res.status(400).send("Get api not working....");
+    }
+
+})
+
 app.post("/signUpEasy", async (req, res) => {  
     const toDoObj = {
         title: "My second Todo",
