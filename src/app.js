@@ -38,6 +38,24 @@ app.get("/feed", async (req,res) => {
     }
 })
 
+app.delete("/user", async (req, res) => {
+    const user = req.body.user;
+    console.log(user)
+    try {
+        if (!user) {
+            res.status(404).send("User not found");
+        }
+        const toDoList = await Todo.findByIdAndDelete(user);
+        if(toDoList.length === 0) {
+            res.status(404).send("User not found to Delete");
+        } else {
+            res.send("User deleted Successfully");
+        }
+    } catch (err) {
+        res.status(400).send("Something went wrong while deleting....")
+    }
+})
+
 app.post("/signUpEasy", async (req, res) => {  
     const toDoObj = {
         title: "My second Todo",
