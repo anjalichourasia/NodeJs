@@ -16,7 +16,7 @@
 16. GET api to get all toDo list from the db
 17. PATCH api to update complete status from the db using Id
 TODO Data sanitization need to add
-18. 
+18. Added validation on date while inserting
 
 
 

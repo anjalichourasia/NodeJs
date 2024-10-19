@@ -82,7 +82,7 @@ app.patch("/update", async (req, res) => {
     console.log("newData", newData);
     console.log("toDoId", toDoId);
     try {    
-        const toDoList = await Todo.findByIdAndUpdate({ _id: toDoId}, newData);
+        const toDoList = await Todo.findByIdAndUpdate({ _id: toDoId}, newData, { runValidators: true});
         if(!toDoList) {
             res.status(404).send("User not found");
         } else {
