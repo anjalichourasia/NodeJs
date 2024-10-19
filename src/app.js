@@ -5,12 +5,11 @@ const { err } = require("./middleware/err");
 
 //handing incoming request : Request Handler
 
-app.use("/", err);
-
 app.use("/admin", authentication);
 
 // put in end : order matter in routes and extension
 app.get("/user", (req, res) => {
+    throw err = Error("err")
     res.send("Welcome");
 })
 
@@ -23,5 +22,8 @@ app.get("/admin/delete", (req, res, next) => {
 })
 
 app.listen(3000, () => console.log("Server started on port 3000....")); // listening our web server on 3000 port\
+
+// put at the end of ur application
+app.use("/", err);
 
 module.exports = { app };

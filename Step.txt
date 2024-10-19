@@ -5,4 +5,6 @@
 5. Listen to port 3000
 6. Make request Handler
 7. Install postman
+8. Added middleware authentication dummy and error Handler to test it
+9. 
 
