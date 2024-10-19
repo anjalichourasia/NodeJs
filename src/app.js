@@ -39,13 +39,13 @@ app.get("/feed", async (req,res) => {
 })
 
 app.delete("/user", async (req, res) => {
-    const user = req.body.user;
-    console.log(user)
+    const toDoId = req.body.toDoId;
+    console.log(toDoId)
     try {
-        if (!user) {
+        if (!toDoId) {
             res.status(404).send("User not found");
         }
-        const toDoList = await Todo.findByIdAndDelete(user);
+        const toDoList = await Todo.findByIdAndDelete(toDoId);
         if(toDoList.length === 0) {
             res.status(404).send("User not found to Delete");
         } else {
@@ -63,11 +63,31 @@ app.post("/signUpEasy", async (req, res) => {
         dueDate: Date.now(),
         completed: false,
         user: "Anjali",
+        _id: "9999e4e3fc5f26cf73b9e043"
     }
     try {    
         const toDo = new Todo(toDoObj); // created new instance of ToDo model
         await toDo.save()
         res.send("User added SuccessFully")
+    } catch (err) {
+        res.status(400).send("Error saving the user:" + err.message);
+    }
+});
+
+// Put or patch can be used to update depend if u want to update whole or some part
+
+app.patch("/update", async (req, res) => {
+    const newData = req.body;
+    const toDoId = req.body.toDoId;
+    console.log("newData", newData);
+    console.log("toDoId", toDoId);
+    try {    
+        const toDoList = await Todo.findByIdAndUpdate({ _id: toDoId}, newData);
+        if(!toDoList) {
+            res.status(404).send("User not found");
+        } else {
+            res.send("User updated SuccessFully")
+        }
     } catch (err) {
         res.status(400).send("Error saving the user:" + err.message);
     }
