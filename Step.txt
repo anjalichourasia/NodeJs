@@ -13,7 +13,7 @@
 13. Created POST /signUp api to add data to Database and push some documents  using API calls from postman
 14. Added express.json() middleware to read JSON obj from postman body. (finally coverted to js object)
 15. Make user signUp API Dynamic to receive data from end user.
-16, 
+16. Get 
 
 
 

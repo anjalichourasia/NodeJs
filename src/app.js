@@ -28,11 +28,14 @@ app.get("/feed", async (req,res) => {
     console.log(userName)
     try {
     const toDoList = await Todo.find({user: userName});
-    res.send(toDoList);
+    if(toDoList.length === 0) {
+        res.status(404).send("User not found");
+    } else {
+        res.send(toDoList);
+    }
     } catch (err) {
         res.status(400).send("Get api not working....");
     }
-
 })
 
 app.post("/signUpEasy", async (req, res) => {  
