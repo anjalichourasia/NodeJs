@@ -1,22 +1,29 @@
 const mongoose  = require("mongoose");
 
-const toDoSchema = new mongoose.Schema({
+const ToDOList = {
     title: {
-        type: String
+        type: String,
+        maxLength: 20,
     },
     description: {
-        type: String
+        type: String,
+        maxLength: 40,
     },
     dueDate: {
-        type: Date
+        type: Date,
+        required: true,
     },
     completed: {
-        type: Boolean
+        type: Boolean,
+        required: true,
     },
     user: {
-        type: String
-    },
-});
+        type: String,
+        required: true,
+        unique: true,
+    }
+}
+const toDoSchema = new mongoose.Schema(ToDOList);
 
 const ToDoModel = mongoose.model("toDo", toDoSchema);
 
