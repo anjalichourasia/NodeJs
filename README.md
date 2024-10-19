@@ -5,6 +5,7 @@ Build from scratch
 - https://nodejs.org/en/download/package-manager
 - winget install --id Git.Git -e --source winget
 - https://www.postman.com/downloads/
+- https://www.mongodb.com/try/download/community
 
 # setup
 - npm init

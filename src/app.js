@@ -9,7 +9,6 @@ app.use("/admin", authentication);
 
 // put in end : order matter in routes and extension
 app.get("/user", (req, res) => {
-    throw err = Error("err")
     res.send("Welcome");
 })
 
