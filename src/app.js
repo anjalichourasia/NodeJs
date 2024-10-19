@@ -9,16 +9,19 @@ const { err } = require("./middleware/err");
 
 app.post("/signUp", async (req, res) => {
     const toDoObj = {
-        title: "My first Todo",
-        description: "Trial 1",
+        title: "My second Todo",
+        description: "Trial 2",
         dueDate: Date.now(),
-        completed: true,
+        completed: false,
         user: "Anjali",
     }
-
-    const toDo = new Todo(toDoObj); // created new instance of ToDo model
-    await toDo.save()
-    res.send("User added SuccessFully")
+    try {    
+        const toDo = new Todo(toDoObj); // created new instance of ToDo model
+        await toDo.save()
+        res.send("User added SuccessFully")
+    } catch (err) {
+        res.status(400).send("Error saving the user:" + err.message);
+    }
 });
 
 connectDB()

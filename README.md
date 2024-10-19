@@ -12,6 +12,7 @@ Build from scratch
 - npm init
 - npm install express : node_modules and package-lock.json file created
 - npm i -g nodemon : install in global level, automatically update in server level
+- create database with name toDo
 
 # run
 - nodemon src/app.js
