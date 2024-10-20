@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "7204a61c-3949-4247-ac3b-77fa05a35f35",
-		"name": "CRUD",
+		"name": "TODO",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "7868455",
 		"_collection_link": "https://interstellar-crater-821378.postman.co/workspace/My-Workspace~5b590532-413f-4381-8057-0d63abb92a60/collection/7868455-7204a61c-3949-4247-ac3b-77fa05a35f35?action=share&source=collection_link&creator=7868455"
@@ -17,7 +17,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user\": \"Anjali\"\r\n}",
+					"raw": "{\r\n    \"user\": \"Lovely\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -45,7 +45,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"title\": \"My Second Todo\",\r\n    \"description\": \"Trial 2\",\r\n    \"dueDate\": \"Wed, 19 May 2025 09:48:40 GMT\",\r\n    \"completed\": false,\r\n    \"user\": \"Arya\"\r\n}",
+					"raw": "{\r\n    \"title\": \"My First Todo\",\r\n    \"description\": \"Trial 1\",\r\n    \"dueDate\": \"Wed, 19 May 2025 09:48:40 GMT\",\r\n    \"completed\": false,\r\n    \"user\": \"Geeta\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -73,7 +73,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"title\": \"My First Todo\",\r\n    \"description\": \"Trial 1\",\r\n    \"dueDate\": \"Wed, 19 May 2025 09:48:40 GMT\",\r\n    \"completed\": false,\r\n    \"user\": \"Anjali\"\r\n}",
+					"raw": "{\r\n    \"title\": \"My First Todo\",\r\n    \"description\": \"Trial 1\",\r\n    \"dueDate\": \"Wed, 19 May 2025 09:48:40 GMT\",\r\n    \"completed\": false,\r\n    \"user\": \"Geeta\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -127,6 +127,81 @@
 					"port": "3000",
 					"path": [
 						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SignUp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Anjali Chourasia\",\r\n    \"password\": \"xyz@\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/signIn",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"signIn"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Anjali Chourasia\",\r\n    \"password\": \"xyz@\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/signIn",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"signIn"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Profile",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"profile"
 					]
 				}
 			},
