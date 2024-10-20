@@ -17,7 +17,7 @@ const authentication = async (req, res, next) => {
 
         const user = await UserDetail.findById(_id);
         if(!user) {
-            throw new Error("User not found");
+            throw new Error("Lets first sign Up");
         }
         req.user = user;
         next();
