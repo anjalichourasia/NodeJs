@@ -155,7 +155,9 @@ app.post("/login", async (req, res) => {
                     expiresIn: '1h'
             })
             console.log(token)
-            res.cookie("token", token);
+            res.cookie("token", token, { 
+                expires: new Date(Date.now() + 7 * 3600000)
+            });
             console.log("send cookies")
         }
         res.send("User signUp SuccessFully")
