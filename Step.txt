@@ -24,7 +24,9 @@ TODO Data sanitization need to add
 23. Install jsonwebtoken 
 24. In login API, after validation, create a JWT token and send back to user
 25. Read the cookie inside your profile API and find the logged in user
-26. Add authMiddleware 
+26. Add authMiddleware in profile api and test it
+27. Set expiry of JWT token and cookies to 7 days
+28.  
 
 
 
