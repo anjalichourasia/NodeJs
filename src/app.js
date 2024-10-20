@@ -166,10 +166,24 @@ app.post("/login", async (req, res) => {
 
 app.get("/profile", async (req, res) => {
     const cookie = req.cookies;
-    if(cookie) {
-        //validate token to be added
-        console.log(cookie);
-        res.send("User detail fetch from db and send it")
+    const { token } = cookie;
+    try {
+        if(token) {
+            //validate token to be added
+            const decodedMessage = await jwt.verify(token, "mySecret@123");
+            const { _id } = decodedMessage;
+            console.log("Logged In User is", _id);
+
+            const user = await UserDetail.findById(_id);
+            if(!user){
+                throw new Error("Please login again") 
+            }
+            res.send(user);
+        } else {
+            throw new Error("Please login again") 
+        }
+    } catch (err) {
+        res.status(400).send(err.message)
     }
 })
 
