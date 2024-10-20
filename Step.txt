@@ -20,6 +20,11 @@ TODO Data sanitization need to add
 19. SignUp added and added validation for password
 20. Created Login API
 21. Inject dummy cookies to test
+22. Create GET /profile api and check if you get the cookie back
+23. Install jsonwebtoken 
+24. In login API, after validation, create a JWT token and send back to user
+25. Read the cookie inside your profile API and find the logged in user
+26. Add authMiddleware 
 
 
 
