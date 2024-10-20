@@ -23,7 +23,7 @@ const authentication = async (req, res, next) => {
         req.user = user;
         next();
     } catch (err) {
-        res.status(400).send(err.message);
+        res.status(403).send(err.message);
     }
 };
 

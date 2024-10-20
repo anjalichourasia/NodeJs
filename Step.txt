@@ -28,6 +28,7 @@ TODO Data sanitization need to add
 27. Set expiry of JWT token and cookies to 7 days
 28. Create userSchema to getJWT token 
 29. Create userSchema to comparePassword
+30. Install Cron and setup sheduler
 
 
 

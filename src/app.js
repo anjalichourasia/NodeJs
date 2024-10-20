@@ -1,7 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
-const jwt = require("jsonwebtoken");
+const cron = require("node-cron");
 
 const app = express(); //creating new express js application
 
@@ -14,6 +14,10 @@ const { validateSignUpData } = require("./utils/validation")
 
 const { authentication } = require("./middleware/auth")
 const { err } = require("./middleware/err");
+
+cron.schedule("0 0 0 1/1 * *", function(){
+    console.log("Cron called very second");
+});
 
 //handing incoming request : Request Handler
 
