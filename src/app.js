@@ -151,7 +151,9 @@ app.post("/login", async (req, res) => {
             res.status(404).send("User not found");
         } else {
             // Create JWT token
-            const token = await jwt.sign({ _id: user._id}, "mySecret@123")
+            const token = await jwt.sign({ _id: user._id}, "mySecret@123", {
+                    expiresIn: '1h'
+            })
             console.log(token)
             res.cookie("token", token);
             console.log("send cookies")
