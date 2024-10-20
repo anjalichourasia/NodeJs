@@ -1,6 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
+const jwt = require("jsonwebtoken");
 
 const app = express(); //creating new express js application
 
@@ -135,18 +136,24 @@ app.post("/signIn", async (req, res) => {
 app.post("/login", async (req, res) => { 
     try {  
         const { email, password } = req.body;
+
         if(!email || !password){
             res.status(404).send("User not found");
         }
+
         const user = await UserDetail.findOne({email: email});
         if(!user){
             throw new Error("Invalid Credentials");
         }
+
         const isPasswordValid = await bcrypt.compare(password, user.password);
-        if(!isPasswordValid){
+        if (!isPasswordValid){
             res.status(404).send("User not found");
         } else {
-            res.cookie("token", "random token");
+            // Create JWT token
+            const token = await jwt.sign({ _id: user._id}, "mySecret@123")
+            console.log(token)
+            res.cookie("token", token);
             console.log("send cookies")
         }
         res.send("User signUp SuccessFully")
@@ -159,8 +166,11 @@ app.post("/login", async (req, res) => {
 
 app.get("/profile", async (req, res) => {
     const cookie = req.cookies;
-    console.log(cookie);
-    res.send("dummy cookie")
+    if(cookie) {
+        //validate token to be added
+        console.log(cookie);
+        res.send("User detail fetch from db and send it")
+    }
 })
 
 connectDB()

@@ -19,7 +19,7 @@ TODO Data sanitization need to add
 18. Added validation on date while inserting
 19. SignUp added and added validation for password
 20. Created Login API
-21. Add dummy cookies to test
+21. Inject dummy cookies to test
 
 
 
