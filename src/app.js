@@ -132,9 +132,12 @@ app.post("/signIn", async (req, res) => {
 app.post("/login", async (req, res) => { 
     try {  
         const { email, password } = req.body;
-        const user = await UserDetail.findOne({email: email});
-        if(!email){
+        if(!email || !password){
             res.status(404).send("User not found");
+        }
+        const user = await UserDetail.findOne({email: email});
+        if(!user){
+            throw new Error("Invalid Credentials");
         }
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if(!isPasswordValid){
