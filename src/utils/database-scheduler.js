@@ -6,12 +6,18 @@ const Todo = require("../models/toDo");
 const databaseScheduler = {
     scheduleDbStatus: async () => {
         try {
-            // const toDoList = await Todo.find();
-            // console.log(toDoList)
-            const toDoList = await Todo.updateMany({user: "Arya"}, {$set: {completed:true}});
-            console.log(toDoList)
-            cron.schedule("0 * * * * *", function(){
-                console.log("Cron called very second");
+            const toDoList = await Todo.find();
+
+            cron.schedule("0 0 * * * *", function(){
+                const expiredDate = toDoList.filter(el => {
+                    return el.dueDate < Date.now()
+                }).map(getUser => {
+                    console.log("user status need to be updated", getUser.user);
+                    const status = async () => {
+                        const updatedStatus = await Todo.updateMany({user: getUser.user}, {$set: {completed:true}});
+                        console.log(updatedStatus);
+                    } 
+                });
             });
         } catch (err) {
             throw new Error("scheduleDbStatus");

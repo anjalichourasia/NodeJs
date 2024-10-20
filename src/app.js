@@ -26,7 +26,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 //Cron job added
-// databaseScheduler.scheduleDbStatus()
+databaseScheduler.scheduleDbStatus()
 
 
 // 1. CREATE
