@@ -19,7 +19,6 @@ const authentication = async (req, res, next) => {
         if(!user) {
             throw new Error("User not found");
         }
-        console.log(user)
         req.user = user;
         next();
     } catch (err) {

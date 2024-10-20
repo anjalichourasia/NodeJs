@@ -45,7 +45,6 @@ app.post("/create", async (req, res) => {
 // get user from database
 app.get("/feed", authentication, async (req,res) => {
     const userName = req.body.user;
-    console.log(userName)
     try {
     const toDoList = await Todo.find({user: userName});
     if(toDoList.length === 0) {
@@ -64,8 +63,6 @@ app.get("/feed", authentication, async (req,res) => {
 app.patch("/update", authentication, async (req, res) => {
     const newData = req.body;
     const toDoId = req.body.toDoId;
-    console.log("newData", newData);
-    console.log("toDoId", toDoId);
     try {    
         const toDoList = await Todo.findByIdAndUpdate({ _id: toDoId}, newData, { runValidators: true});
         if(!toDoList) {
@@ -82,7 +79,6 @@ app.patch("/update", authentication, async (req, res) => {
 
 app.delete("/user", authentication, async (req, res) => {
     const toDoId = req.body.toDoId;
-    console.log(toDoId)
     try {
         if (!toDoId) {
             res.status(404).send("User not found");
@@ -125,7 +121,6 @@ app.post("/signIn", async (req, res) => {
         validateSignUpData(req)  ;
         const { email, password } = req.body;
         const passwordHash = await bcrypt.hash(password, 10);
-        console.log(passwordHash)
         // Validation of data
         // const userDetailObj = req.body;
         const userDetail = new UserDetail({
@@ -161,11 +156,9 @@ app.post("/login", async (req, res) => {
         } else {
             // Create JWT token
             const token = await user.getJWT();
-            console.log(token)
             res.cookie("token", token, { 
                 expires: new Date(Date.now() + 7 * 3600000)
             });
-            console.log("send cookies")
         }
         res.send("User signUp SuccessFully")
     } catch (err) {
