@@ -16,6 +16,7 @@ Build from scratch
 - import postman setup
 - Hit Me First to add some Data API to be called first
 - install validator to validate and Bcrypt to encrypt password
+- installed cookie parser to parse cookie
 
 # run
 - nodemon src/app.js

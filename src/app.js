@@ -1,5 +1,6 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
+const cookieParser = require("cookie-parser");
 
 const app = express(); //creating new express js application
 
@@ -19,6 +20,8 @@ const { err } = require("./middleware/err");
 
 app.use(express.json()); 
 
+// we can access the cookie whenever it is passed
+app.use(cookieParser());
 // 1. CREATE
 app.post("/create", async (req, res) => {
     const toDoObj = req.body;
@@ -142,12 +145,23 @@ app.post("/login", async (req, res) => {
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if(!isPasswordValid){
             res.status(404).send("User not found");
+        } else {
+            res.cookie("token", "random token");
+            console.log("send cookies")
         }
         res.send("User signUp SuccessFully")
     } catch (err) {
         res.status(400).send("Error saving the user:" + err.message);
     }
 });
+
+// Get Profile after Login
+
+app.get("/profile", async (req, res) => {
+    const cookie = req.cookies;
+    console.log(cookie);
+    res.send("dummy cookie")
+})
 
 connectDB()
     .then(() => {
