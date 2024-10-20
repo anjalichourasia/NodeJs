@@ -37,7 +37,7 @@ app.post("/create", async (req, res) => {
 
 // 2. READ
 // get user from database
-app.get("/feed", async (req,res) => {
+app.get("/feed", authentication, async (req,res) => {
     const userName = req.body.user;
     console.log(userName)
     try {
@@ -55,7 +55,7 @@ app.get("/feed", async (req,res) => {
 // 3. UPDATE
 // Put or patch can be used to update depend if u want to update whole or some part
 
-app.patch("/update", async (req, res) => {
+app.patch("/update", authentication, async (req, res) => {
     const newData = req.body;
     const toDoId = req.body.toDoId;
     console.log("newData", newData);
@@ -74,7 +74,7 @@ app.patch("/update", async (req, res) => {
 
 // 4. DELETE
 
-app.delete("/user", async (req, res) => {
+app.delete("/user", authentication, async (req, res) => {
     const toDoId = req.body.toDoId;
     console.log(toDoId)
     try {
@@ -92,11 +92,13 @@ app.delete("/user", async (req, res) => {
     }
 })
 
+//without middleware to test
+
 app.post("/signUpEasy", async (req, res) => {  
     const toDoObj = {
         title: "My second Todo",
         description: "Trial 2",
-        dueDate: Date.now(),
+        dueDate: new Date(Date.now() + 7 * 3600000),
         completed: false,
         user: "Anjali",
         _id: "9999e4e3fc5f26cf73b9e043"
