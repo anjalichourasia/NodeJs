@@ -164,24 +164,10 @@ app.post("/login", async (req, res) => {
 
 // Get Profile after Login
 
-app.get("/profile", async (req, res) => {
-    const cookie = req.cookies;
-    const { token } = cookie;
+app.get("/profile", authentication, async (req, res) => {
     try {
-        if(token) {
-            //validate token to be added
-            const decodedMessage = await jwt.verify(token, "mySecret@123");
-            const { _id } = decodedMessage;
-            console.log("Logged In User is", _id);
-
-            const user = await UserDetail.findById(_id);
-            if(!user){
-                throw new Error("Please login again") 
-            }
-            res.send(user);
-        } else {
-            throw new Error("Please login again") 
-        }
+        const user = req.user;
+        res.send(user);
     } catch (err) {
         res.status(400).send(err.message)
     }
