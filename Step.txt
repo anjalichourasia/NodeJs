@@ -30,7 +30,7 @@ TODO Data sanitization need to add
 29. Create userSchema to comparePassword
 30. Install Cron and setup sheduler
 31. Convert js to js by adding required package and add new file
-32.
+32. Refactor the code.
 
 
 
