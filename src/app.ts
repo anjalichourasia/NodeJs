@@ -44,7 +44,7 @@ app.post("/create", async (req, res) => {
 // 2. READ
 // get user from database
 app.get("/feed", authentication, async (req,res) => {
-    const userName = req.body.user;
+    const userName: string = req.body.user;
     try {
     const toDoList = await Todo.find({user: userName});
     if(toDoList.length === 0) {
@@ -122,7 +122,7 @@ app.post("/signIn", async (req, res) => {
         const { email, password } = req.body;
         const passwordHash = await bcrypt.hash(password, 10);
         // Validation of data
-        // const userDetailObj = req.body;
+        
         const userDetail = new UserDetail({
             email,
             password: passwordHash
@@ -170,7 +170,7 @@ app.post("/login", async (req, res) => {
 
 app.get("/profile", authentication, async (req, res) => {
     try {
-        const user = req.user;
+        const user: String = req.user;
         res.send(user);
     } catch (err) {
         res.status(400).send(err.message)

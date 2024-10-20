@@ -10,16 +10,19 @@ const databaseScheduler = {
                 const expiredDate = toDoList.filter(el => {
                     return el.dueDate < Date.now()
                 }).map(getUser => {
-                    const status = async () => {
-                        const updatedStatus = await Todo.updateMany({user: getUser.user}, {$set: {completed:true}});
-                        console.log("Cron job Activated");
-                    } 
+                    setScheduler(getUser)
                 });
             });
         } catch (err) {
             throw new Error("scheduleDbStatus");
         }
-    }
+    },
+};
+
+const setScheduler = async (getUser) => {
+    await Todo.updateMany({user: getUser.user}, {$set: {completed:true}});
+    console.log("Cron job Activated");
+    return;
 }
 
 module.exports = { databaseScheduler };
